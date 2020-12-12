@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>detail view</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'fullview.css' %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">NewsBlog</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+          </ul>
+          
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+    </div>
+<div class="container" style="margin-bottom:0px; ">
+    <div class="col mb-4">
+          <div class="card-body">
+            <img src="{{ fullarticle.article_image.url }}" class="card-img-top" id="article_image" alt="article_image">
+              <div class="card-body" id="card_body">
+                <h5 class="card-title font-weight-bolder" id="card_title">{{fullarticle.title}}</h5>
+                <p class="lead bold font-weight-bold" id="card_headline">{{fullarticle.headline}}</p>
+                <p class="text" id="card_content">{{fullarticle.content|safe}}</p>
+                <p id="card_timedate">{{fullarticle.timedate}}</p>
+                <p id="card_name">{{fullarticle.user.name}}</p>
+               </div>
+
+               <!--comments-->
+               
+
+               <div class="card" style="margin: 10px;">
+                <div class="card-header list-group-item list-group-item-warning">
+                  Comments
+                </div>
+                {% for comnt in feedback %}
+                <ul class="list-unstyled" style="margin: 5px;">
+                  <li class="media" style="padding: 0px;">
+                  {% if img %}
+                    {% for i in img %}
+                          <img src="{{media_url}}{{ i.propic }}" class="mr-3" alt="DP" id="dp"><br><br>
+                        {% endfor %}
+                  {% else %}
+                  {% endif %}
+                  <div class="media-body" style="padding: 0px;">
+                    <p class="mt-0 mb-1 list-group-item list-group-item-info" id="commentname">{{comnt.user.name}}</p>
+                    <p class="card-text list-group-item list-group-item-secondary" id="comment" >{{comnt.comment}} <button type="button" class="close" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button><br><span id="timedate">{{comnt.timedate}}</span></p>
+                  </div>
+                  </li>
+                </ul>
+                {% endfor %}
+              </div>
+               
+               
+               <form action="/postcomment/" method="post">
+                {% csrf_token %}
+                    <div class="form-group" style="margin: 10px;">
+                        <textarea class="form-control" name="comment" id="exampleFormControlTextarea1" rows="3"  placeholder="Write your feedback"style="margin-bootom: 10px;"></textarea>
+                        <input type="hidden" name="postSno" value="{{fullarticle.sno}}">
+                        <button class="btn btn-info">Comment</button>
+                        <i onclick="myFunction(this)" class="fa fa-thumbs-up btn btn-info" id="like"></i>
+                    </div>
+               </form>
+           </div>
+      </div>
+</div>
+
+<div class="container" style="background-color: grey; margin-top: 0px;">
+    
+</div>
+
+
+        <script>
+            function myFunction(x) {
+            x.classList.toggle("fa-thumbs-down");
+            }
+        </script>
+      <!--Bootstrap js-->
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+</body>
+</html>
