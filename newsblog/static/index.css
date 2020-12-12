@@ -1,0 +1,18 @@
+#article_image{
+    height: 200px;
+}
+#card_body{
+    padding: 10px;
+}
+#card_content{
+    margin-bottom: 5px;
+}
+#card_timedate{
+    margin: 3px;
+}
+#card_timedate{
+    margin: 0px;
+    font-size: 12px;
+}
+
+/* #card_headline, #card_content, #card_timedate, #card_name */

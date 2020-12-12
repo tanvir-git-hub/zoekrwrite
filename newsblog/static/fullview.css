@@ -1,0 +1,38 @@
+#article_image{
+    height: 350px;
+}
+#card_timedate{
+    margin-bottom: 0px;
+}
+#like {
+    font-size: 23px;
+    cursor: pointer;
+    user-select: none;
+    margin: 15px;
+  }
+#dp{
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    border: 1px solid;
+    margin: 10px;
+}
+#commentname{
+    padding: 4px;
+    margin-bottom: 0px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+#comment{
+    padding: 4px;
+    margin-bottom: 0px;
+    border: none;
+    font-size: 18px;
+}
+#timedate{
+    padding: 4px;
+    margin-bottom: 0px;
+    border: none;
+    font-size: 13px;
+}

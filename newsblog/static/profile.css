@@ -1,0 +1,12 @@
+/* #myTab, #myTabContent{
+    display: none;
+} */
+#delbtn{
+    margin:5px;
+    font-size:18px;
+    cursor:pointer;
+}
+#delbtn:hover{
+    transition: 0.3s;
+    color: red;
+}
